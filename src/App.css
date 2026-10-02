@@ -1,0 +1,1163 @@
+/* =========================================================
+GLOBAL
+========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+
+html {
+scroll-behavior: smooth;
+}
+
+body {
+font-family: Arial, Helvetica, sans-serif;
+background: #f8fafc;
+color: #0f172a;
+}
+
+button,
+input,
+textarea,
+select {
+font-family: inherit;
+}
+
+button {
+cursor: pointer;
+}
+
+a {
+text-decoration: none;
+}
+
+/* =========================================================
+HOME PAGE
+========================================================= */
+
+.home {
+min-height: 100vh;
+background: #f8fafc;
+}
+
+/* =========================================================
+NAVBAR
+========================================================= */
+
+.navbar {
+height: 72px;
+width: 100%;
+
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+padding: 0 8%;
+
+background: rgba(255, 255, 255, 0.95);
+border-bottom: 1px solid #e2e8f0;
+
+position: sticky;
+top: 0;
+z-index: 100;
+
+backdrop-filter: blur(10px);
+}
+
+.navbar h2 {
+font-size: 24px;
+font-weight: 800;
+color: #0f172a;
+}
+
+.navbar button {
+border: none;
+border-radius: 8px;
+
+padding: 11px 20px;
+
+background: #0f172a;
+color: white;
+
+font-size: 14px;
+font-weight: 600;
+
+transition: 0.2s ease;
+}
+
+.navbar button:hover {
+background: #334155;
+transform: translateY(-1px);
+}
+
+/* =========================================================
+HOME HERO
+========================================================= */
+
+.hero {
+min-height: calc(100vh - 72px);
+
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+
+text-align: center;
+
+padding: 60px 20px;
+}
+
+.hero h1 {
+font-size: 64px;
+line-height: 1.08;
+font-weight: 800;
+letter-spacing: -2px;
+
+color: #0f172a;
+
+margin-bottom: 25px;
+}
+
+.hero p {
+max-width: 620px;
+
+font-size: 18px;
+line-height: 1.7;
+
+color: #64748b;
+
+margin-bottom: 35px;
+}
+
+.hero-button {
+border: none;
+border-radius: 10px;
+
+padding: 14px 28px;
+
+background: #0f172a;
+color: white;
+
+font-size: 16px;
+font-weight: 600;
+
+transition: 0.2s ease;
+}
+
+.hero-button:hover {
+background: #334155;
+transform: translateY(-2px);
+}
+
+/* =========================================================
+BUILDER PAGE
+========================================================= */
+
+.builder {
+min-height: 100vh;
+
+padding: 60px 20px;
+
+background: #f8fafc;
+}
+
+.builder h1 {
+text-align: center;
+
+font-size: 40px;
+margin-bottom: 40px;
+}
+
+.builder form {
+max-width: 700px;
+
+margin: auto;
+padding: 35px;
+
+background: white;
+
+border: 1px solid #e2e8f0;
+border-radius: 16px;
+
+box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.builder h2 {
+margin-top: 25px;
+margin-bottom: 20px;
+
+font-size: 22px;
+}
+
+.builder h2:first-child {
+margin-top: 0;
+}
+
+.builder input,
+.builder textarea,
+.builder select {
+width: 100%;
+
+padding: 13px 15px;
+
+border: 1px solid #cbd5e1;
+border-radius: 8px;
+
+outline: none;
+
+font-size: 15px;
+
+background: white;
+
+transition: 0.2s ease;
+}
+
+.builder textarea {
+min-height: 110px;
+resize: vertical;
+}
+
+.builder input:focus,
+.builder textarea:focus,
+.builder select:focus {
+border-color: #64748b;
+box-shadow: 0 0 0 3px rgba(100, 116, 139, 0.1);
+}
+
+.builder button {
+width: 100%;
+
+margin-top: 20px;
+
+padding: 14px;
+
+border: none;
+border-radius: 8px;
+
+background: #0f172a;
+color: white;
+
+font-size: 16px;
+font-weight: 600;
+
+transition: 0.2s ease;
+}
+
+.builder button:hover {
+background: #334155;
+}
+
+.builder button:disabled {
+opacity: 0.6;
+cursor: not-allowed;
+}
+
+/* =========================================================
+LIVE PREVIEW
+========================================================= */
+
+.live-preview {
+max-width: 900px;
+
+margin: 40px auto;
+
+padding: 30px;
+
+background: white;
+
+border-radius: 16px;
+
+border: 1px solid #e2e8f0;
+
+box-shadow: 0 5px 20px rgba(15, 23, 42, 0.05);
+}
+
+.live-preview > h2 {
+margin-bottom: 25px;
+
+text-align: center;
+}
+
+/* =========================================================
+PORTFOLIO PAGE
+========================================================= */
+
+.portfolio {
+min-height: 100vh;
+
+padding: 70px 20px;
+
+background: #f8fafc;
+}
+
+.portfolio-container {
+max-width: 1000px;
+
+margin: auto;
+}
+
+/* =========================================================
+COMMON PORTFOLIO
+========================================================= */
+
+.portfolio h1 {
+font-size: 48px;
+line-height: 1.1;
+
+margin-bottom: 12px;
+}
+
+.portfolio h2 {
+font-size: 28px;
+
+margin-bottom: 25px;
+}
+
+.portfolio h3 {
+margin-bottom: 10px;
+}
+
+.portfolio p {
+line-height: 1.7;
+}
+
+/* =========================================================
+PRO BADGE
+========================================================= */
+
+.pro-badge {
+display: inline-block;
+
+margin-bottom: 18px;
+
+padding: 6px 12px;
+
+border-radius: 20px;
+
+background: #0f172a;
+color: white;
+
+font-size: 11px;
+font-weight: 800;
+
+letter-spacing: 1px;
+}
+
+/* =========================================================
+MINIMALIST TEMPLATE
+========================================================= */
+
+.minimalist-template {
+background: white;
+
+padding: 55px;
+
+border-radius: 20px;
+
+border: 1px solid #e2e8f0;
+
+box-shadow: 0 15px 40px rgba(15, 23, 42, 0.07);
+}
+
+/* ---------- HERO ---------- */
+
+.minimalist-template .hero-section {
+padding-bottom: 45px;
+
+border-bottom: 1px solid #e2e8f0;
+}
+
+.minimalist-template h1 {
+font-size: 52px;
+line-height: 1.1;
+
+color: #0f172a;
+
+margin-bottom: 8px;
+}
+
+.minimalist-template .username {
+color: #64748b;
+
+font-size: 16px;
+
+margin-bottom: 20px;
+}
+
+.minimalist-template .bio {
+max-width: 700px;
+
+color: #475569;
+
+font-size: 17px;
+
+margin-bottom: 25px;
+}
+
+/* ---------- SOCIAL LINKS ---------- */
+
+.social-links {
+display: flex;
+
+flex-wrap: wrap;
+
+gap: 12px;
+}
+
+.social-links a {
+display: inline-block;
+
+padding: 9px 15px;
+
+border: 1px solid #cbd5e1;
+
+border-radius: 8px;
+
+color: #0f172a;
+
+font-size: 14px;
+font-weight: 600;
+
+transition: 0.2s ease;
+}
+
+.social-links a:hover {
+background: #0f172a;
+
+color: white;
+
+border-color: #0f172a;
+
+transform: translateY(-2px);
+}
+
+/* ---------- SKILLS ---------- */
+
+.minimalist-template .skills-section {
+padding: 45px 0;
+
+border-bottom: 1px solid #e2e8f0;
+}
+
+.minimalist-template .skill-category {
+margin-bottom: 25px;
+}
+
+.minimalist-template .skill-category:last-child {
+margin-bottom: 0;
+}
+
+.minimalist-template .skill-category h3 {
+color: #334155;
+
+font-size: 16px;
+
+margin-bottom: 12px;
+}
+
+.skills {
+display: flex;
+
+flex-wrap: wrap;
+
+gap: 10px;
+}
+
+.skill {
+display: inline-block;
+
+padding: 8px 14px;
+
+background: #f1f5f9;
+
+border: 1px solid #e2e8f0;
+
+border-radius: 20px;
+
+color: #334155;
+
+font-size: 14px;
+font-weight: 600;
+}
+
+/* ---------- PROJECTS ---------- */
+
+.minimalist-template .projects-section {
+padding: 45px 0;
+}
+
+.projects-grid {
+display: grid;
+
+grid-template-columns: repeat(2, minmax(0, 1fr));
+
+gap: 22px;
+}
+
+.minimalist-template .project-card {
+overflow: hidden;
+
+background: #ffffff;
+
+border: 1px solid #e2e8f0;
+
+border-radius: 14px;
+
+padding: 22px;
+
+transition: 0.25s ease;
+}
+
+.minimalist-template .project-card:hover {
+transform: translateY(-4px);
+
+box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
+.minimalist-template .project-card h3 {
+color: #0f172a;
+
+font-size: 21px;
+
+margin-bottom: 10px;
+}
+
+.minimalist-template .project-card p {
+color: #64748b;
+
+margin-bottom: 15px;
+}
+
+.project-image {
+display: block;
+
+width: 100%;
+
+max-height: 280px;
+
+object-fit: cover;
+
+border-radius: 10px;
+
+margin-bottom: 18px;
+}
+
+/* ---------- PROJECT TECH ---------- */
+
+.project-tech {
+display: flex;
+
+flex-wrap: wrap;
+
+gap: 7px;
+
+margin-bottom: 18px;
+}
+
+.tech-tag {
+padding: 5px 9px;
+
+background: #f1f5f9;
+
+border-radius: 6px;
+
+color: #475569;
+
+font-size: 12px;
+font-weight: 600;
+}
+
+/* ---------- PROJECT LINKS ---------- */
+
+.project-links {
+display: flex;
+
+flex-wrap: wrap;
+
+gap: 15px;
+}
+
+.project-links a {
+color: #2563eb;
+
+font-size: 14px;
+
+font-weight: 700;
+}
+
+.project-links a:hover {
+text-decoration: underline;
+}
+
+/* ---------- MINIMALIST FOOTER ---------- */
+
+.portfolio-footer {
+padding-top: 35px;
+
+border-top: 1px solid #e2e8f0;
+
+display: flex;
+
+justify-content: space-between;
+
+gap: 15px;
+
+color: #94a3b8;
+
+font-size: 13px;
+}
+
+/* =========================================================
+CYBERPUNK TEMPLATE
+========================================================= */
+
+.cyberpunk-template {
+position: relative;
+
+overflow: hidden;
+
+background: #050505;
+
+color: #00ff9d;
+
+padding: 55px;
+
+border-radius: 20px;
+
+min-height: 80vh;
+
+border: 1px solid #00ff9d;
+
+box-shadow:
+0 0 25px rgba(0, 255, 157, 0.08),
+inset 0 0 25px rgba(0, 255, 157, 0.03);
+}
+
+/* ---------- CYBER TEXT ---------- */
+
+.cyberpunk-template h1,
+.cyberpunk-template h2,
+.cyberpunk-template h3,
+.cyberpunk-template p {
+color: #00ff9d;
+}
+
+.cyberpunk-template h1 {
+font-size: 52px;
+
+line-height: 1.1;
+
+margin-bottom: 10px;
+
+text-shadow: 0 0 12px rgba(0, 255, 157, 0.45);
+}
+
+.cyberpunk-template h2 {
+margin-top: 45px;
+
+margin-bottom: 25px;
+
+font-size: 25px;
+}
+
+.cyberpunk-template h3 {
+margin-bottom: 10px;
+}
+
+/* ---------- CYBER HERO ---------- */
+
+.cyber-hero {
+padding-bottom: 40px;
+
+border-bottom: 1px solid #00ff9d;
+}
+
+.system-status {
+margin-bottom: 22px;
+
+font-size: 14px;
+
+letter-spacing: 2px;
+}
+
+.cyber-username {
+margin-bottom: 20px;
+
+font-size: 15px;
+}
+
+.cyber-bio {
+margin-bottom: 25px;
+
+max-width: 750px;
+}
+
+/* ---------- CYBER SOCIAL ---------- */
+
+.cyber-social-links {
+display: flex;
+
+flex-wrap: wrap;
+
+gap: 12px;
+}
+
+.cyber-social-links a {
+padding: 8px 12px;
+
+border: 1px solid #00ff9d;
+
+color: #00ff9d;
+
+font-size: 13px;
+
+font-weight: bold;
+
+transition: 0.2s ease;
+}
+
+.cyber-social-links a:hover {
+background: #00ff9d;
+
+color: #050505;
+
+box-shadow: 0 0 15px rgba(0, 255, 157, 0.4);
+}
+
+/* ---------- CYBER SKILLS ---------- */
+
+.cyber-skill-category {
+margin-bottom: 25px;
+}
+
+.cyber-skill-category h3 {
+font-size: 15px;
+
+margin-bottom: 12px;
+}
+
+.cyber-skills-list {
+display: flex;
+
+flex-wrap: wrap;
+
+gap: 9px;
+}
+
+.cyber-skill {
+padding: 7px 11px;
+
+border: 1px solid #00ff9d;
+
+color: #00ff9d;
+
+font-size: 13px;
+
+background: rgba(0, 255, 157, 0.04);
+}
+
+/* ---------- CYBER PROJECTS ---------- */
+
+.cyber-project-grid {
+display: grid;
+
+grid-template-columns: repeat(2, minmax(0, 1fr));
+
+gap: 20px;
+}
+
+.cyber-project {
+padding: 22px;
+
+border: 1px solid #00ff9d;
+
+border-radius: 8px;
+
+background: rgba(0, 255, 157, 0.025);
+
+transition: 0.25s ease;
+}
+
+.cyber-project:hover {
+transform: translateY(-4px);
+
+background: rgba(0, 255, 157, 0.06);
+
+box-shadow: 0 0 20px rgba(0, 255, 157, 0.12);
+}
+
+.cyber-project p {
+margin-bottom: 15px;
+}
+
+.cyber-project .project-image {
+border: 1px solid #00ff9d;
+}
+
+/* ---------- CYBER TECH ---------- */
+
+.cyber-tech {
+display: flex;
+
+flex-wrap: wrap;
+
+gap: 7px;
+
+margin-bottom: 18px;
+}
+
+.cyber-tech-tag {
+padding: 5px 9px;
+
+border: 1px solid #00ff9d;
+
+color: #00ff9d;
+
+font-size: 11px;
+
+font-weight: bold;
+}
+
+/* ---------- CYBER PROJECT LINKS ---------- */
+
+.cyber-project-links {
+display: flex;
+
+flex-wrap: wrap;
+
+gap: 15px;
+}
+
+.cyber-project-links a {
+color: #00ff9d;
+
+font-size: 13px;
+
+font-weight: bold;
+}
+
+.cyber-project-links a:hover {
+text-shadow: 0 0 10px #00ff9d;
+}
+
+/* =========================================================
+CYBER CONTACT
+========================================================= */
+
+.cyber-contact {
+margin-top: 45px;
+
+padding-top: 40px;
+
+border-top: 1px solid #00ff9d;
+}
+
+.cyber-contact > p {
+margin-bottom: 20px;
+}
+
+.cyberpunk-template .contact-form {
+margin-top: 20px;
+
+display: flex;
+
+flex-direction: column;
+
+gap: 15px;
+}
+
+.cyberpunk-template .contact-form input,
+.cyberpunk-template .contact-form textarea {
+width: 100%;
+
+padding: 13px 15px;
+
+background: #050505;
+
+color: #00ff9d;
+
+border: 1px solid #00ff9d;
+
+border-radius: 4px;
+
+outline: none;
+
+font-size: 14px;
+}
+
+.cyberpunk-template .contact-form textarea {
+min-height: 130px;
+
+resize: vertical;
+}
+
+.cyberpunk-template .contact-form input:focus,
+.cyberpunk-template .contact-form textarea:focus {
+box-shadow: 0 0 12px rgba(0, 255, 157, 0.25);
+}
+
+.cyberpunk-template .contact-form input::placeholder,
+.cyberpunk-template .contact-form textarea::placeholder {
+color: #00ff9d;
+
+opacity: 0.7;
+}
+
+.cyberpunk-template .contact-form button {
+padding: 13px;
+
+border: 1px solid #00ff9d;
+
+border-radius: 4px;
+
+background: #00ff9d;
+
+color: #050505;
+
+font-weight: 800;
+
+transition: 0.2s ease;
+}
+
+.cyberpunk-template .contact-form button:hover {
+box-shadow: 0 0 18px rgba(0, 255, 157, 0.5);
+
+transform: translateY(-2px);
+}
+
+.cyberpunk-template .contact-status {
+margin-top: 5px;
+
+font-size: 14px;
+}
+
+/* =========================================================
+CYBER FOOTER
+========================================================= */
+
+.cyber-footer {
+margin-top: 45px;
+
+padding-top: 25px;
+
+border-top: 1px solid #00ff9d;
+
+display: flex;
+
+justify-content: space-between;
+
+gap: 15px;
+
+font-size: 12px;
+}
+
+/* =========================================================
+GENERIC CONTACT FORM
+========================================================= */
+
+.contact-form {
+margin-top: 20px;
+
+display: flex;
+
+flex-direction: column;
+
+gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+width: 100%;
+
+padding: 13px 15px;
+
+border: 1px solid #cbd5e1;
+
+border-radius: 8px;
+
+font-size: 15px;
+
+outline: none;
+}
+
+.contact-form textarea {
+min-height: 120px;
+
+resize: vertical;
+}
+
+.contact-form button {
+padding: 13px;
+
+border: none;
+
+border-radius: 8px;
+
+background: #0f172a;
+
+color: white;
+
+font-weight: bold;
+}
+
+.contact-status {
+margin-top: 10px;
+}
+
+/* =========================================================
+MOBILE - TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+
+.navbar {
+padding: 0 5%;
+}
+
+.hero h1 {
+font-size: 44px;
+}
+
+.hero p {
+font-size: 16px;
+}
+
+.builder {
+padding: 40px 15px;
+}
+
+.builder form {
+padding: 25px 20px;
+}
+
+.builder h1 {
+font-size: 32px;
+}
+
+.portfolio {
+padding: 40px 15px;
+}
+
+.minimalist-template,
+.cyberpunk-template {
+padding: 35px 25px;
+}
+
+.minimalist-template h1,
+.cyberpunk-template h1 {
+font-size: 40px;
+}
+
+.projects-grid,
+.cyber-project-grid {
+grid-template-columns: 1fr;
+}
+
+}
+
+/* =========================================================
+MOBILE - PHONE
+========================================================= */
+
+@media (max-width: 480px) {
+
+.navbar {
+height: 64px;
+padding: 0 15px;
+}
+
+.navbar h2 {
+font-size: 20px;
+}
+
+.navbar button {
+padding: 9px 13px;
+}
+
+.hero {
+min-height: calc(100vh - 64px);
+
+ 
+padding: 40px 15px;
+ 
+
+}
+
+.hero h1 {
+font-size: 36px;
+
+ 
+letter-spacing: -1px;
+ 
+
+}
+
+.hero p {
+font-size: 15px;
+}
+
+.builder {
+padding: 30px 12px;
+}
+
+.builder form {
+padding: 22px 16px;
+}
+
+.builder h1 {
+font-size: 29px;
+}
+
+.portfolio {
+padding: 20px 10px;
+}
+
+.minimalist-template,
+.cyberpunk-template {
+padding: 28px 18px;
+
+ 
+border-radius: 12px;
+ 
+
+}
+
+.minimalist-template h1,
+.cyberpunk-template h1 {
+font-size: 34px;
+}
+
+.portfolio h2 {
+font-size: 23px;
+}
+
+.social-links,
+.cyber-social-links,
+.project-links,
+.cyber-project-links {
+flex-direction: column;
+
+ 
+align-items: stretch;
+ 
+
+}
+
+.social-links a,
+.cyber-social-links a {
+text-align: center;
+}
+
+.portfolio-footer,
+.cyber-footer {
+flex-direction: column;
+
+
+text-align: center;
+
+
+}
+
+}
