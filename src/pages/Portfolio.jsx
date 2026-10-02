@@ -19,8 +19,8 @@ function Portfolio() {
         setError("");
 
         const url = username
-          ? `http://https://codefolio-backend-txxm.onrender.com/api/profile/${username}`
-          : "http://https://codefolio-backend-txxm.onrender.com/api/profile";
+          ? `https://codefolio-backend-txxm.onrender.com/api/profile/${username}`
+          : "https://codefolio-backend-txxm.onrender.com/api/profile";
 
         const response = await fetch(url);
 

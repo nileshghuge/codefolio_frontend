@@ -183,7 +183,7 @@ try {
   console.log("Sending profile:", profile);
 
   const response = await fetch(
-    "http://https://codefolio-backend-txxm.onrender.com/api/profile",
+    "https://codefolio-backend-txxm.onrender.com/api/profile",
     {
       method: "POST",
 

@@ -18,7 +18,7 @@ setLoading(true);
 
 try {
   const response = await fetch(
-    "http://https://codefolio-backend-txxm.onrender.com/api/login",
+    "https://codefolio-backend-txxm.onrender.com/api/login",
     {
       method: "POST",
       headers: {
