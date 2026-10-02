@@ -14,7 +14,7 @@ function Cyberpunk({ profile }) {
 
     try {
       const response = await fetch(
-        "https://codefolio-backend-txxm.onrender.com/api/logincodefolio-backend-txxm.onrender.com/api/contact",
+        "https://codefolio-backend-txxm.onrender.com/api/contact",
         {
           method: "POST",
           headers: {
@@ -102,7 +102,6 @@ function Cyberpunk({ profile }) {
               "Building digital experiences with code."}
           </p>
 
-
           {/* SOCIAL LINKS */}
           <div className="cyber-socials">
 
@@ -142,7 +141,6 @@ function Cyberpunk({ profile }) {
 
       </section>
 
-
       {/* SKILLS */}
       <section className="cyber-section">
 
@@ -172,7 +170,6 @@ function Cyberpunk({ profile }) {
 
           </div>
 
-
           <div className="cyber-skill-card">
 
             <h3>BACKEND</h3>
@@ -191,7 +188,6 @@ function Cyberpunk({ profile }) {
             </div>
 
           </div>
-
 
           <div className="cyber-skill-card">
 
@@ -215,7 +211,6 @@ function Cyberpunk({ profile }) {
         </div>
 
       </section>
-
 
       {/* PROJECTS */}
       <section className="cyber-section">
@@ -258,14 +253,11 @@ function Cyberpunk({ profile }) {
                       />
                     )}
 
-
                   <div className="cyber-project-content">
 
                     <div className="cyber-project-number">
-                      PROJECT_{String(index + 1).padStart(
-                        2,
-                        "0"
-                      )}
+                      PROJECT_
+                      {String(index + 1).padStart(2, "0")}
                     </div>
 
                     <h3>
@@ -277,7 +269,6 @@ function Cyberpunk({ profile }) {
                       {project.description ||
                         "Project description"}
                     </p>
-
 
                     {/* TECH STACK */}
                     <div className="cyber-tech-stack">
@@ -294,7 +285,6 @@ function Cyberpunk({ profile }) {
                       )}
 
                     </div>
-
 
                     {/* LINKS */}
                     <div className="cyber-project-links">
@@ -332,7 +322,6 @@ function Cyberpunk({ profile }) {
 
       </section>
 
-
       {/* CONTACT */}
       <section className="cyber-section cyber-contact-section">
 
@@ -360,7 +349,6 @@ function Cyberpunk({ profile }) {
 
           </div>
 
-
           <form
             className="cyber-contact-form"
             onSubmit={handleContact}
@@ -376,7 +364,6 @@ function Cyberpunk({ profile }) {
               required
             />
 
-
             <input
               type="email"
               placeholder="YOUR EMAIL"
@@ -387,7 +374,6 @@ function Cyberpunk({ profile }) {
               required
             />
 
-
             <textarea
               placeholder="YOUR MESSAGE"
               value={message}
@@ -397,7 +383,6 @@ function Cyberpunk({ profile }) {
               rows="6"
               required
             />
-
 
             <button type="submit">
               {status === "Sending..."
@@ -416,7 +401,6 @@ function Cyberpunk({ profile }) {
         </div>
 
       </section>
-
 
       {/* FOOTER */}
       <footer className="cyber-footer">
@@ -444,4 +428,5 @@ function Cyberpunk({ profile }) {
 }
 
 export default Cyberpunk;
- 
+
+

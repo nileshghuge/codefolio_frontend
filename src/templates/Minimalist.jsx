@@ -1,223 +1,267 @@
-import { useState } from "react";
+import { useEffect } from "react";
 
 function Minimalist({ profile }) {
-  const [imageError, setImageError] = useState({});
+  useEffect(() => {
+    const elements = document.querySelectorAll(".mf-reveal");
 
-  const showImage = (index) => {
-    return !imageError[index];
-  };
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("mf-visible");
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    elements.forEach((element) => observer.observe(element));
+
+    return () => observer.disconnect();
+  }, []);
+
+  const skills = profile?.skills || {};
+
+  const projects = profile?.projects || [];
 
   return (
-    <div className="minimalist-template">
+    <div className="mf-portfolio">
 
-      {/* HERO SECTION */}
-      <section className="minimalist-hero">
+      {/* Animated background */}
+      <div className="mf-background">
+        <div className="mf-orb mf-orb-one"></div>
+        <div className="mf-orb mf-orb-two"></div>
+        <div className="mf-grid"></div>
+      </div>
 
-        <div className="minimalist-badge-row">
-          <span className="minimalist-status">
-            ● AVAILABLE
-          </span>
+      {/* Navbar */}
+      <nav className="mf-navbar">
+        <a href="#home" className="mf-logo">
+          <span>&lt;/&gt;</span>
+          CodeFolio
+        </a>
 
-          {profile.isPro && (
-            <span className="pro-badge">
-              PRO
-            </span>
-          )}
+        <div className="mf-nav-links">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+
+      {/* Hero */}
+      <section id="home" className="mf-hero">
+
+        <div className="mf-hero-content">
+
+          <div className="mf-status">
+            <span></span>
+            Available for opportunities
+          </div>
+
+          <p className="mf-eyebrow">
+            HELLO, I'M
+          </p>
+
+          <h1>
+            {profile?.name || "Your Name"}
+          </h1>
+
+          <h2>
+            Full Stack Developer
+          </h2>
+
+          <p className="mf-bio">
+            {profile?.bio ||
+              "I build modern, scalable and user-friendly web applications."}
+          </p>
+
+          <div className="mf-actions">
+
+            {profile?.github && (
+              <a
+                href={profile.github}
+                target="_blank"
+                rel="noreferrer"
+                className="mf-primary-btn"
+              >
+                GitHub <span>↗</span>
+              </a>
+            )}
+
+            {profile?.linkedin && (
+              <a
+                href={profile.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="mf-secondary-btn"
+              >
+                LinkedIn <span>↗</span>
+              </a>
+            )}
+
+            {profile?.resumeUrl && (
+              <a
+                href={profile.resumeUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="mf-secondary-btn"
+              >
+                Resume <span>↓</span>
+              </a>
+            )}
+
+          </div>
+
         </div>
 
-        <h1>
-          {profile.name || "Your Name"}
-        </h1>
+        <div className="mf-hero-card">
 
-        <p className="minimalist-username">
-          @{profile.username || "username"}
-        </p>
+          <div className="mf-code-window">
 
-        <p className="minimalist-bio">
-          {profile.bio || "Developer Portfolio"}
-        </p>
+            <div className="mf-window-top">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
 
-        {/* SOCIAL LINKS */}
-        <div className="minimalist-socials">
+            <div className="mf-code">
+              <p>
+                <span className="code-purple">const</span>{" "}
+                developer = {"{"}
+              </p>
 
-          {profile.github && (
-            <a
-              href={profile.github}
-              target="_blank"
-              rel="noreferrer"
-            >
-              GitHub
-            </a>
-          )}
+              <p>
+                &nbsp;&nbsp;name:{" "}
+                <span className="code-green">
+                  "{profile?.name || "Developer"}"
+                </span>,
+              </p>
 
-          {profile.linkedin && (
-            <a
-              href={profile.linkedin}
-              target="_blank"
-              rel="noreferrer"
-            >
-              LinkedIn
-            </a>
-          )}
+              <p>
+                &nbsp;&nbsp;role:{" "}
+                <span className="code-green">
+                  "Full Stack Developer"
+                </span>,
+              </p>
 
-          {profile.resumeUrl && (
-            <a
-              href={profile.resumeUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Resume
-            </a>
-          )}
+              <p>
+                &nbsp;&nbsp;passion:{" "}
+                <span className="code-green">
+                  "Building"
+                </span>
+              </p>
+
+              <p>
+                {"}"};
+              </p>
+
+              <p className="code-cursor">
+                _
+              </p>
+            </div>
+
+          </div>
 
         </div>
+
       </section>
 
+      {/* About */}
+      <section id="about" className="mf-section mf-reveal">
 
-      {/* SKILLS SECTION */}
-      <section className="minimalist-section">
+        <div className="mf-section-label">
+          01 — ABOUT
+        </div>
 
-        <h2>Skills</h2>
+        <div className="mf-about-content">
 
-        <div className="skills-grid">
+          <h2>
+            Turning ideas into
+            <span> digital experiences.</span>
+          </h2>
 
-          <div className="skill-category">
-            <h3>Frontend</h3>
-
-            <div className="skill-list">
-              {(profile.frontendSkills || []).map(
-                (skill, index) => (
-                  <span
-                    className="skill-tag"
-                    key={`frontend-${index}`}
-                  >
-                    {skill}
-                  </span>
-                )
-              )}
-            </div>
-          </div>
-
-
-          <div className="skill-category">
-            <h3>Backend</h3>
-
-            <div className="skill-list">
-              {(profile.backendSkills || []).map(
-                (skill, index) => (
-                  <span
-                    className="skill-tag"
-                    key={`backend-${index}`}
-                  >
-                    {skill}
-                  </span>
-                )
-              )}
-            </div>
-          </div>
-
-
-          <div className="skill-category">
-            <h3>DevOps</h3>
-
-            <div className="skill-list">
-              {(profile.devopsSkills || []).map(
-                (skill, index) => (
-                  <span
-                    className="skill-tag"
-                    key={`devops-${index}`}
-                  >
-                    {skill}
-                  </span>
-                )
-              )}
-            </div>
-          </div>
+          <p>
+            {profile?.bio ||
+              "I'm a developer passionate about creating clean, modern and meaningful digital experiences."}
+          </p>
 
         </div>
+
       </section>
 
+      {/* Skills */}
+      <section id="skills" className="mf-section mf-reveal">
 
-      {/* PROJECTS SECTION */}
-      <section className="minimalist-section">
+        <div className="mf-section-label">
+          02 — SKILLS
+        </div>
 
-        <h2>Projects</h2>
+        <div className="mf-skills-grid">
 
-        <div className="projects-grid">
+          <SkillGroup
+            title="Frontend"
+            items={skills.frontend}
+          />
 
-          {(profile.projects || []).map(
-            (project, index) => (
+          <SkillGroup
+            title="Backend"
+            items={skills.backend}
+          />
+
+          <SkillGroup
+            title="DevOps"
+            items={skills.devops}
+          />
+
+        </div>
+
+      </section>
+
+      {/* Projects */}
+      <section id="projects" className="mf-section mf-reveal">
+
+        <div className="mf-section-label">
+          03 — PROJECTS
+        </div>
+
+        <div className="mf-projects">
+
+          {projects.length > 0 ? (
+            projects.map((project, index) => (
               <article
-                className="project-card"
+                className="mf-project-card"
                 key={index}
               >
 
-                {/* PROJECT SCREENSHOT */}
-                {project.screenshot &&
-                  showImage(index) ? (
-                    <img
-                      className="project-image"
-                      src={project.screenshot}
-                      alt={`${project.title || "Project"} screenshot`}
-                      loading="lazy"
-                      onError={() =>
-                        setImageError((previous) => ({
-                          ...previous,
-                          [index]: true,
-                        }))
-                      }
-                    />
-                  ) : null}
+                <div className="mf-project-number">
+                  0{index + 1}
+                </div>
 
-
-                {/* PROJECT CONTENT */}
-                <div className="project-content">
+                <div className="mf-project-content">
 
                   <h3>
-                    {project.title || "Untitled Project"}
+                    {project.title || "Project"}
                   </h3>
 
                   <p>
                     {project.description ||
-                      "Project description"}
+                      "A modern web project built with passion and technology."}
                   </p>
 
+                  <div className="mf-tech-stack">
 
-                  {/* TECH STACK */}
-                  <div className="tech-stack">
-
-                    {(Array.isArray(project.techStack)
-                      ? project.techStack
-                      : typeof project.techStack === "string"
-                      ? project.techStack
-                          .split(",")
-                          .map((item) => item.trim())
-                          .filter(Boolean)
-                      : []
-                    ).map((tech, techIndex) => (
-                      <span
-                        className="tech-tag"
-                        key={techIndex}
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                    {project.techStack?.map(
+                      (tech, techIndex) => (
+                        <span key={techIndex}>
+                          {tech}
+                        </span>
+                      )
+                    )}
 
                   </div>
 
-
-                  {/* PROJECT LINKS */}
-                  <div className="project-links">
-
-                    {project.repoLink && (
-                      <a
-                        href={project.repoLink}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        GitHub →
-                      </a>
-                    )}
+                  <div className="mf-project-links">
 
                     {project.liveLink && (
                       <a
@@ -225,7 +269,17 @@ function Minimalist({ profile }) {
                         target="_blank"
                         rel="noreferrer"
                       >
-                        Live Demo →
+                        Live Demo ↗
+                      </a>
+                    )}
+
+                    {project.repoLink && (
+                      <a
+                        href={project.repoLink}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        GitHub ↗
                       </a>
                     )}
 
@@ -234,26 +288,65 @@ function Minimalist({ profile }) {
                 </div>
 
               </article>
-            )
+            ))
+          ) : (
+            <div className="mf-empty">
+              Projects will appear here.
+            </div>
           )}
 
         </div>
 
       </section>
 
+      {/* Contact */}
+      <section
+        id="contact"
+        className="mf-contact mf-reveal"
+      >
 
-      {/* FOOTER */}
-      <footer className="minimalist-footer">
+        <div className="mf-section-label">
+          04 — CONTACT
+        </div>
 
-        <p>
-          Built with CodeFolio
-          {profile.isPro && " • PRO"}
-        </p>
+        <div className="mf-contact-content">
 
-        <p>
+          <p className="mf-contact-small">
+            HAVE A PROJECT IN MIND?
+          </p>
+
+          <h2>
+            Let's build something
+            <span> great.</span>
+          </h2>
+
+          <p>
+            Feel free to reach out if you'd like to
+            work together or simply connect.
+          </p>
+
+          <a
+            href={`mailto:${profile?.email || ""}`}
+            className="mf-contact-btn"
+          >
+            Get in touch →
+          </a>
+
+        </div>
+
+      </section>
+
+      {/* Footer */}
+      <footer className="mf-footer">
+
+        <div>
           © {new Date().getFullYear()}{" "}
-          {profile.name || "Developer"}
-        </p>
+          {profile?.name || "Developer"}
+        </div>
+
+        <div>
+          Built with <strong>CodeFolio</strong>
+        </div>
 
       </footer>
 
@@ -261,5 +354,31 @@ function Minimalist({ profile }) {
   );
 }
 
+
+/* Skill Group */
+
+function SkillGroup({ title, items }) {
+  return (
+    <div className="mf-skill-group">
+
+      <h3>{title}</h3>
+
+      <div className="mf-skill-list">
+
+        {items?.length > 0 ? (
+          items.map((skill, index) => (
+            <span key={index}>
+              {skill}
+            </span>
+          ))
+        ) : (
+          <span>No skills added</span>
+        )}
+
+      </div>
+
+    </div>
+  );
+}
+
 export default Minimalist;
- 
