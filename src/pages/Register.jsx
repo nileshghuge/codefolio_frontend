@@ -1,250 +1,110 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Register() {
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
   const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
 
-  const handleRegister = async (event) => {
-    event.preventDefault();
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-    setMessage("");
-    setLoading(true);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
     try {
-      const response = await fetch(
-        "https://codefolio-backend-txxm.onrender.com/api/register",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username,
-            email,
-            password,
-          }),
-        }
+      const response = await axios.post(
+        "https://mindwell-backend-rdph.onrender.com/api/register",
+        formData
       );
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(
-          data.message || "Registration failed."
-        );
-      }
-
-      localStorage.setItem("token", data.token);
-      localStorage.setItem(
-        "user",
-        JSON.stringify(data.user)
-      );
+      localStorage.setItem("token", response.data.token);
 
       setMessage("Registration successful!");
 
       setTimeout(() => {
-        navigate("/builder");
+        navigate("/dashboard");
       }, 500);
     } catch (error) {
-      console.error("Registration error:", error);
-      setMessage(error.message);
-    } finally {
-      setLoading(false);
+      setMessage(
+        error.response?.data?.message ||
+          "Registration failed. Please try again."
+      );
     }
   };
 
   return (
     <div className="auth-page">
-
-      {/* Background decoration */}
-      <div className="auth-glow auth-glow-one"></div>
-      <div className="auth-glow auth-glow-two"></div>
-
-      {/* Brand */}
-      <div className="auth-brand">
-        <Link to="/" className="auth-logo">
-          <span className="logo-mark">
-            &lt;/&gt;
-          </span>
-
-          <span>CodeFolio</span>
-        </Link>
-      </div>
-
-      {/* Register Card */}
       <div className="auth-card">
+        <Link to="/" className="auth-logo">
+          MindWell
+        </Link>
 
-        <div className="auth-header">
+        <h1>Create account</h1>
 
-          <div className="auth-icon">
-            +
-          </div>
+        <p className="auth-subtitle">
+          Start your private wellness journey.
+        </p>
 
-          <h1>Create your account</h1>
+        <form onSubmit={handleSubmit}>
+          <label>Username</label>
 
-          <p>
-            Start building your professional
-            developer portfolio.
-          </p>
+          <input
+            type="text"
+            name="username"
+            placeholder="Enter your username"
+            value={formData.username}
+            onChange={handleChange}
+            required
+          />
 
-        </div>
+          <label>Email</label>
 
-        <form
-          onSubmit={handleRegister}
-          className="auth-form"
-        >
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
 
-          {/* Username */}
-          <div className="auth-field">
+          <label>Password</label>
 
-            <label htmlFor="username">
-              Username
-            </label>
+          <input
+            type="password"
+            name="password"
+            placeholder="Create a password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
 
-            <input
-              id="username"
-              type="text"
-              placeholder="yourusername"
-              value={username}
-              onChange={(event) =>
-                setUsername(event.target.value)
-              }
-              autoComplete="username"
-              required
-            />
-
-          </div>
-
-          {/* Email */}
-          <div className="auth-field">
-
-            <label htmlFor="register-email">
-              Email address
-            </label>
-
-            <input
-              id="register-email"
-              type="email"
-              placeholder="you@example.com"
-              value={email}
-              onChange={(event) =>
-                setEmail(event.target.value)
-              }
-              autoComplete="email"
-              required
-            />
-
-          </div>
-
-          {/* Password */}
-          <div className="auth-field">
-
-            <label htmlFor="register-password">
-              Password
-            </label>
-
-            <div className="password-wrapper">
-
-              <input
-                id="register-password"
-                type={
-                  showPassword
-                    ? "text"
-                    : "password"
-                }
-                placeholder="Minimum 6 characters"
-                value={password}
-                onChange={(event) =>
-                  setPassword(event.target.value)
-                }
-                autoComplete="new-password"
-                minLength="6"
-                required
-              />
-
-              <button
-                type="button"
-                className="password-toggle"
-                onClick={() =>
-                  setShowPassword(!showPassword)
-                }
-              >
-                {showPassword
-                  ? "Hide"
-                  : "Show"}
-              </button>
-
-            </div>
-
-          </div>
-
-          {/* Register button */}
-          <button
-            type="submit"
-            className="auth-submit"
-            disabled={loading}
-          >
-            {loading ? (
-              "Creating account..."
-            ) : (
-              <>
-                Create account
-                <span>→</span>
-              </>
-            )}
+          <button type="submit" className="primary-btn auth-button">
+            Create Account
           </button>
-
         </form>
 
-        {/* Message */}
-        {message && (
-          <div
-            className={`auth-message ${
-              message.includes("successful")
-                ? "success"
-                : "error"
-            }`}
-          >
-            {message}
-          </div>
-        )}
+        {message && <p className="auth-message">{message}</p>}
 
-        {/* Login */}
-        <div className="auth-divider">
-          <span></span>
-
-          <p>
-            Already have an account?
-          </p>
-
-          <span></span>
-        </div>
-
-        <Link
-          to="/login"
-          className="auth-secondary-button"
-        >
-          Sign in to CodeFolio
-        </Link>
-
+        <p className="auth-footer">
+          Already have an account?{" "}
+          <Link to="/login">Login</Link>
+        </p>
       </div>
-
-      {/* Footer */}
-      <p className="auth-footer">
-        © {new Date().getFullYear()} CodeFolio ·
-        Developer Portfolio Builder
-      </p>
-
     </div>
   );
 }
 
 export default Register;
-
